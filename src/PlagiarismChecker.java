@@ -37,6 +37,6 @@ public class PlagiarismChecker {
                 }
             }
         }
-        return 0;
+        return longestSubstringLength;
     }
 }
