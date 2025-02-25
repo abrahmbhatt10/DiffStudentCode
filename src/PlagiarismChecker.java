@@ -30,6 +30,9 @@ public class PlagiarismChecker {
                         longestSubstringLength = currentSubstringLength;
                     }
                 }
+                else if(substring1 != substring2){
+
+                }
             }
         }
         return 0;
