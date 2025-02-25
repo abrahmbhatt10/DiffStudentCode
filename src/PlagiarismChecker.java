@@ -33,7 +33,7 @@ public class PlagiarismChecker {
                 else if(substring1 != substring2){
                     substring2 = substring2.substring(0,substring2.length() - 2);
                     substring2 += doc2.charAt(j + 1);
-                    //Re-check/ recursively check with substring 1?;
+                    //Re-check/ recursively check with substring 1;
                 }
             }
         }
