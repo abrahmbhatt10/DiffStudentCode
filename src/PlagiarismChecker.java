@@ -107,7 +107,7 @@ public class PlagiarismChecker {
                     if(arrMatches[j][l] == -1){
                         break;
                     }
-                    if((arrMatches[j][l] < arrMatches[pos][k]) && (arrMatches[j][l] != -1) && (previousLength < arrLength[j][l])){
+                    if((arrMatches[j][l] < arrMatches[pos][k]) && (previousLength < arrLength[j][l])){
                         previousLength = arrLength[j][l];
                     }
                 }
