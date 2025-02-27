@@ -101,7 +101,7 @@ public class PlagiarismChecker {
                 currentLength = 1;
             }
             previousLength = 0;
-            for(int j = pos - 1; j >= 0; j--){
+            for(int j = pos - 1; j >= 0 && previousLength < j+1; j--){
                 for(int l = 0; l < arrMatches[j].length; l++){
                     if(arrMatches[j][l] == -1){
                         break;
