@@ -52,11 +52,9 @@ public class PlagiarismChecker {
         Stores the index of matching characters in each index of the column for each character.
      */
     private static void initArrMatches(int[][] arrMatches, String doc1, String doc2) {
-
         if((arrMatches == null) || (arrMatches.length <= 0)){
             return;
         }
-
         int k;
         for(int i = 0; i < doc1.length(); i++){
             k = 0;
@@ -96,13 +94,13 @@ public class PlagiarismChecker {
         }
         for(int k = 0; k < arrMatches[pos].length; k++){
             if(arrMatches[pos][k] == -1){
-                return currentLength;
+                return myLength;
             }
             if(arrMatches[pos][k] >= 0){
                 currentLength = 1;
             }
+            previousLength = 0;
             for(int j = pos - 1; j >= 0; j--){
-                previousLength = 0;
                 for(int l = 0; l < arrMatches[j].length; l++){
                     if(arrMatches[j][l] == -1){
                         break;
