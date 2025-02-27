@@ -16,6 +16,9 @@ public class PlagiarismChecker {
      */
     public static int longestSharedSubstring(String doc1, String doc2) {
         //this function returns the length of the longest shared substring.
+        /*
+            The below code returns maximum substring length after going through all possible substrings.
+         */
         String substring1 = "";
         String substring2 = "";
         int docLength = 0;
@@ -30,7 +33,7 @@ public class PlagiarismChecker {
         int[][] arrMatches = new int[docLength][docLength];
         initArrMatches(arrMatches, doc1, doc2);
         for(int i = 0; i < docLength; i++){
-            currentSubstringLength = getSubLength(doc1, doc2, i);
+            currentSubstringLength = getSubLength(arrMatches, i);
             if(currentSubstringLength > longestSubstringLength){
                 longestSubstringLength = currentSubstringLength;
             }
@@ -38,7 +41,11 @@ public class PlagiarismChecker {
         return longestSubstringLength;
     }
 
+    /*
+        Stores the index of matching characters in each index of the column for each character.
+     */
     private static void initArrMatches(int[][] arrMatches, String doc1, String doc2) {
+
         if((arrMatches == null) || (arrMatches.length <= 0)){
             return;
         }
@@ -47,7 +54,7 @@ public class PlagiarismChecker {
                 arrMatches[i][j] = -1;
             }
         }
-        int k = 0;
+        int k;
         for(int i = 0; i < doc1.length(); i++){
             k = 0;
             for(int j = 0; j < doc2.length(); j++){
@@ -59,7 +66,9 @@ public class PlagiarismChecker {
             }
         }
     }
+    /*
 
+     */
     private static int getSubLength(int[][] arrMatches, int pos) {
         if((arrMatches == null) || (arrMatches.length <= 0)){
             return 0;
@@ -69,6 +78,9 @@ public class PlagiarismChecker {
         }
         int currentLength = 0;
         int compareNum = 0;
+        if((pos == 0) && (arrMatches[pos][0] != -1)){
+            return 1;
+        }
         for(int i = 0; i < arrMatches[pos].length; i++){
             if(arrMatches[pos][i] == -1){
                 return currentLength;
@@ -80,7 +92,7 @@ public class PlagiarismChecker {
                 compareNum = arrMatches[pos][i];
                 for(int j = pos - 1; j >= 0; j--){
                     for(int k = 0; k < arrMatches[j].length; k++){
-                        if(arrMatches[j][k] < compareNum){
+                        if((arrMatches[j][k] < compareNum) && (arrMatches[j][k] != -1)){
                             currentLength++;
                             compareNum = arrMatches[j][k];
                         }
