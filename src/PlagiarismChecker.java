@@ -27,6 +27,8 @@ public class PlagiarismChecker {
         else{
             docLength = doc1.length();
         }
+        int[][] arrMatches = new int[docLength][docLength];
+        initArrMatches(arrMatches, doc1, doc2);
         for(int i = 0; i < docLength; i++){
             currentSubstringLength = getSubLength(doc1, doc2, i);
             if(currentSubstringLength > longestSubstringLength){
@@ -36,7 +38,53 @@ public class PlagiarismChecker {
         return longestSubstringLength;
     }
 
-    private static int getSubLength(String doc1, String doc2, int i) {
+    private static void initArrMatches(int[][] arrMatches, String doc1, String doc2) {
+        if((arrMatches == null) || (arrMatches.length <= 0)){
+            return;
+        }
+        for(int i = 0; i < arrMatches.length; i++){
+            for(int j = 0; j < arrMatches[0].length; j++){
+                arrMatches[i][j] = -1;
+            }
+        }
+        int k = 0;
+        for(int i = 0; i < doc1.length(); i++){
+            k = 0;
+            for(int j = 0; j < doc2.length(); j++){
+                if(doc1.charAt(i) == doc2.charAt(j)){
+                    arrMatches[i][k] = j;
+                    k++;
+                }
 
+            }
+        }
     }
+
+    private static int getSubLength(int[][] arrMatches, int pos) {
+        if((arrMatches == null) || (arrMatches.length <= 0)){
+            return 0;
+        }
+        if((pos < 0) || (pos >= arrMatches.length)){
+            return 0;
+        }
+        int currentLength = 0;
+        for(int i = 0; i < arrMatches[pos].length; i++){
+            if(arrMatches[pos][i] == -1){
+                return currentLength;
+            }
+            if(arrMatches[pos][i] == 0){
+                currentLength = 1;
+            }
+            else{
+                for(int j = pos - 1; j >= 0; j--){
+                    for(int k = 0; k < arrMatches[j].length; k++){
+                        if(arrMatches[j][k] < arrMatches[pos][i]){
+                            currentLength++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
