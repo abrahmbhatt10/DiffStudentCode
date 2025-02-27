@@ -107,7 +107,6 @@ public class PlagiarismChecker {
     Use a 1-d array, only storing the first time you see the letter in the second string.
     If you find the same letter repeated again later in string 1, then don't use the first number in the table again, use the second number, in the 2nd # stored in the A cplumn.
 
-
      */
 
 }
