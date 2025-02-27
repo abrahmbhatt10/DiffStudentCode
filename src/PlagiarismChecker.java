@@ -68,18 +68,21 @@ public class PlagiarismChecker {
             return 0;
         }
         int currentLength = 0;
+        int compareNum = 0;
         for(int i = 0; i < arrMatches[pos].length; i++){
             if(arrMatches[pos][i] == -1){
                 return currentLength;
             }
             if(arrMatches[pos][i] == 0){
-                currentLength = 1;
+                currentLength++;
             }
             else{
+                compareNum = arrMatches[pos][i];
                 for(int j = pos - 1; j >= 0; j--){
                     for(int k = 0; k < arrMatches[j].length; k++){
-                        if(arrMatches[j][k] < arrMatches[pos][i]){
+                        if(arrMatches[j][k] < compareNum){
                             currentLength++;
+                            compareNum = arrMatches[j][k];
                         }
                     }
                 }
