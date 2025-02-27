@@ -38,6 +38,7 @@ public class PlagiarismChecker {
                 arrLength[i][j] = 0;
             }
         }
+
         initArrMatches(arrMatches, doc1, doc2);
         for(int i = 0; i < docLength; i++){
             currentSubstringLength = getSubLength(arrMatches, i, arrLength);
