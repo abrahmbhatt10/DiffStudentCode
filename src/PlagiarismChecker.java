@@ -31,9 +31,16 @@ public class PlagiarismChecker {
             docLength = doc1.length();
         }
         int[][] arrMatches = new int[docLength][docLength];
+        int[][] arrLength = new int[docLength][docLength];
+        for(int i = 0; i < arrMatches.length; i++){
+            for(int j = 0; j < arrMatches[0].length; j++){
+                arrMatches[i][j] = -1;
+                arrLength[i][j] = 0;
+            }
+        }
         initArrMatches(arrMatches, doc1, doc2);
         for(int i = 0; i < docLength; i++){
-            currentSubstringLength = getSubLength(arrMatches, i);
+            currentSubstringLength = getSubLength(arrMatches, i, arrLength);
             if(currentSubstringLength > longestSubstringLength){
                 longestSubstringLength = currentSubstringLength;
             }
@@ -49,11 +56,7 @@ public class PlagiarismChecker {
         if((arrMatches == null) || (arrMatches.length <= 0)){
             return;
         }
-        for(int i = 0; i < arrMatches.length; i++){
-            for(int j = 0; j < arrMatches[0].length; j++){
-                arrMatches[i][j] = -1;
-            }
-        }
+
         int k;
         for(int i = 0; i < doc1.length(); i++){
             k = 0;
@@ -69,7 +72,7 @@ public class PlagiarismChecker {
     /*
 
      */
-    private static int getSubLength(int[][] arrMatches, int pos) {
+    private static int getSubLength(int[][] arrMatches, int pos, int[][] arrLength) {
         if((arrMatches == null) || (arrMatches.length <= 0)){
             return 0;
         }
@@ -77,29 +80,46 @@ public class PlagiarismChecker {
             return 0;
         }
         int currentLength = 0;
-        int compareNum = 0;
-        if((pos == 0) && (arrMatches[pos][0] != -1)){
-            return 1;
+        int previousLength = 0;
+        int myLength = 0;
+        if(pos == 0){
+            for(int k = 0; k < arrLength[pos].length; k++){
+                if(arrMatches[pos][k] >= 0){
+                    arrLength[pos][k] = 1;
+                    currentLength = 1;
+                }
+                else{
+                    break;
+                }
+            }
+            return currentLength;
         }
-        for(int i = 0; i < arrMatches[pos].length; i++){
-            if(arrMatches[pos][i] == -1){
+        for(int k = 0; k < arrMatches[pos].length; k++){
+            if(arrMatches[pos][k] == -1){
                 return currentLength;
             }
-            if(arrMatches[pos][i] == 0){
-                currentLength++;
+            if(arrMatches[pos][k] >= 0){
+                currentLength = 1;
             }
-            else{
-                compareNum = arrMatches[pos][i];
-                for(int j = pos - 1; j >= 0; j--){
-                    for(int k = 0; k < arrMatches[j].length; k++){
-                        if((arrMatches[j][k] < compareNum) && (arrMatches[j][k] != -1)){
-                            currentLength++;
-                            compareNum = arrMatches[j][k];
-                        }
+            for(int j = pos - 1; j >= 0; j--){
+                previousLength = 0;
+                for(int l = 0; l < arrMatches[j].length; l++){
+                    if(arrMatches[j][l] == -1){
+                        break;
                     }
+                    if((arrMatches[j][l] < arrMatches[pos][k]) && (arrMatches[j][l] != -1) && (previousLength < arrLength[j][l])){
+                        previousLength = arrLength[j][l];
+                    }
+                }
+                if(currentLength == 1){
+                    arrLength[pos][k] = currentLength + previousLength;
+                }
+                if(myLength < arrLength[pos][k]){
+                    myLength = arrLength[pos][k];
                 }
             }
         }
+        return myLength;
     }
 
     /*
