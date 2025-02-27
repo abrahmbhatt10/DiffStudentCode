@@ -20,23 +20,7 @@ public class PlagiarismChecker {
         String substring2 = "";
         int currentSubstringLength = 0;
         int longestSubstringLength = 0;
-        for(int i = 0; i < doc1.length(); i++){
-            for(int j = 0; j < doc2.length(); j++){
-                substring1 += doc1.charAt(i);
-                substring2 += doc2.charAt(j);
-                if(substring1 + doc1.charAt(i + 1) == substring2 + doc2.charAt(j + 1)){
-                    currentSubstringLength++;
-                    if(currentSubstringLength > longestSubstringLength){
-                        longestSubstringLength = currentSubstringLength;
-                    }
-                }
-                else if(substring1 != substring2){
-                    substring2 = substring2.substring(0,substring2.length() - 2);
-                    substring2 += doc2.charAt(j + 1);
-                    //Re-check/ recursively check with substring 1;
-                }
-            }
-        }
+        if(doc1.length() < doc2.length())
         return longestSubstringLength;
     }
 }
