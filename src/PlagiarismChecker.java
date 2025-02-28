@@ -19,26 +19,25 @@ public class PlagiarismChecker {
         /*
             The below code returns maximum substring length after going through all possible substrings.
          */
-        String substring1 = "";
-        String substring2 = "";
-        int docLength = 0;
-        int currentSubstringLength = 0;
-        int longestSubstringLength = 0;
+        int docLength = 0; // Used to store the largest length of the strings doc1 and doc2.
+        int currentSubstringLength = 0; // Used to store the return value of the length of the currentLargestSubstring at a given position.
+        int longestSubstringLength = 0; // Used to store the largest substring length from any function.
         if(doc1.length() < doc2.length()){
             docLength = doc2.length();
         }
         else{
             docLength = doc1.length();
         }
-        int[][] arrMatches = new int[docLength][docLength];
-        int[][] arrLength = new int[docLength][docLength];
+        int[][] arrMatches = new int[docLength][docLength]; // This stores the index values of matched characters between the 2 strings.
+        int[][] arrLength = new int[docLength][docLength]; // This stores the substring value at a given position.
+        // Initializing the values of the 2 arrays.
         for(int i = 0; i < arrMatches.length; i++){
             for(int j = 0; j < arrMatches[0].length; j++){
                 arrMatches[i][j] = -1;
                 arrLength[i][j] = 0;
             }
         }
-
+        // populates matched data in the array
         initArrMatches(arrMatches, doc1, doc2);
         for(int i = 0; i < docLength; i++){
             currentSubstringLength = getSubLength(arrMatches, i, arrLength);
@@ -51,6 +50,12 @@ public class PlagiarismChecker {
 
     /*
         Stores the index of matching characters in each index of the column for each character.
+     */
+
+    /**
+     * @param arrMatches
+     * @param doc1
+     * @param doc2
      */
     private static void initArrMatches(int[][] arrMatches, String doc1, String doc2) {
         if((arrMatches == null) || (arrMatches.length <= 0)){
@@ -68,8 +73,13 @@ public class PlagiarismChecker {
             }
         }
     }
-    /*
 
+    /**
+     *
+     * @param arrMatches
+     * @param pos
+     * @param arrLength
+     * @return
      */
     private static int getSubLength(int[][] arrMatches, int pos, int[][] arrLength) {
         if((arrMatches == null) || (arrMatches.length <= 0)){
@@ -120,12 +130,4 @@ public class PlagiarismChecker {
         }
         return myLength;
     }
-
-    /*
-    Pseudocode:
-    Use a 1-d array, only storing the first time you see the letter in the second string.
-    If you find the same letter repeated again later in string 1, then don't use the first number in the table again, use the second number, in the 2nd # stored in the A cplumn.
-
-     */
-
 }
