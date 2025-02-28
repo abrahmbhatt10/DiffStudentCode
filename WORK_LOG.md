@@ -1,13 +1,14 @@
 Name: Agastya Brahmbhatt
 
-| Date   |      Time       |                                                                                                                                                            Update |
-|:-------|:---------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Feb 25 | 11:25 - 11:55am |                                                                       I tried brainstorming. I created a few of the basic checks. I did this using if conditions. |
-| Feb 26 | 9:30 - 10:00pm  |                                                                                   I created a method. I initialized an array. The array had matches of positions. |
-| Feb 26 | 10:00 - 10:30pm |   The second function started to get the sublength. It did this based on the matches positions. I need to create another 2-d array to store the sublength values. |
-| Feb 27 |  10:30 - 11:00  |                                                                                                                                                                   |
-| Feb 27 |  11:00 - 11:30  |                                                                                                                                                                   |
-|        |                 |                                                                                                                                                                   |
+| Date   |      Time       |                                                                                                                                                                               Update |
+|:-------|:---------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Feb 25 | 11:25 - 11:55am |                                                                                          I tried brainstorming. I created a few of the basic checks. I did this using if conditions. |
+| Feb 26 | 9:30 - 10:00pm  |                                                                                                      I created a method. I initialized an array. The array had matches of positions. |
+| Feb 26 | 10:00 - 10:30pm |                      The second function started to get the sublength. It did this based on the matches positions. I need to create another 2-d array to store the sublength values. |
+| Feb 27 |  10:30 - 11:00  | I tried to implement Mr. Blick's suggestion. His suggestion was to have only 1 number below each character in String 1. Through examples, I realized I needed to save all positions. |
+| Feb 27 |  11:00 - 11:30  |                 I implemented a tabulation table. The table was saving substring values. At each position of the string, I was using previouslength to calculate new string lengths. |
+| Feb 27 |    3:30 - 4     |                                                                                        I tested the code. All tests were passing. Efficient largest was taking 7 minutes 36 seconds. |
+| Feb 27 |    5 - 5:30     |                                I revised the code. I tried implementing Mr. Blick's suggestion. I stopped searching for string lengths smaller than previouslength at a given round. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
