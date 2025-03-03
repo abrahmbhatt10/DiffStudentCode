@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f68ad4e4-7dd7-4950-93fb-5d96ae262228" name="Changes" comment="code" />
+    <list default="true" id="f68ad4e4-7dd7-4950-93fb-5d96ae262228" name="Changes" comment="code">
+      <change afterPath="$PROJECT_DIR$/src/OldPlagiarismChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlagiarismChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlagiarismChecker.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,21 +45,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.PlagiarismCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlagiarismCheckerTest.testCorrectMed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlagiarismCheckerTest.testCorrectSmall.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PlagiarismCheckerTest.testEfficientLargest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.PlagiarismCheckerTest.executor": "Run",
+    "JUnit.PlagiarismCheckerTest.testCorrectMed.executor": "Run",
+    "JUnit.PlagiarismCheckerTest.testCorrectSmall.executor": "Run",
+    "JUnit.PlagiarismCheckerTest.testEdgeCase.executor": "Run",
+    "JUnit.PlagiarismCheckerTest.testEfficientLargest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="PlagiarismCheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DiffStudentCode" />
@@ -79,6 +91,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlagiarismCheckerTest.testEdgeCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DiffStudentCode" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PlagiarismCheckerTest" />
+      <option name="METHOD_NAME" value="testEdgeCase" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlagiarismCheckerTest.testEfficientLargest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DiffStudentCode" />
       <option name="PACKAGE_NAME" value="" />
@@ -91,10 +113,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlagiarismCheckerTest.testEfficientLargest" />
         <item itemvalue="JUnit.PlagiarismCheckerTest.testCorrectMed" />
-        <item itemvalue="JUnit.PlagiarismCheckerTest" />
         <item itemvalue="JUnit.PlagiarismCheckerTest.testCorrectSmall" />
+        <item itemvalue="JUnit.PlagiarismCheckerTest.testEdgeCase" />
+        <item itemvalue="JUnit.PlagiarismCheckerTest" />
+        <item itemvalue="JUnit.PlagiarismCheckerTest.testEfficientLargest" />
       </list>
     </recent_temporary>
   </component>
@@ -347,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740707428404</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="code">
+      <option name="closed" value="true" />
+      <created>1740707553937</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1740707553937</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
