@@ -110,28 +110,22 @@ public class PlagiarismChecker {
         if(count <= 0){
             return;
         }
-        char[] resultString = new char[count + 1];
+        char[] resultString = new char[count];
         MatchedStr pStr;
         int k = resultsArr.size() - 1;
         for(int i = valuesArr.length - 1; i >= 0; i--){
-            for(int j = valuesArr[0].length - 1; j >= 0; j--){
-                pStr = resultsArr.get(k);
-                if((pStr.doc1Index == i) && (pStr.doc2Index == j)){
-                    resultString[count - k] = pStr.matchedChar;
-                }
-                else{
-                    if((valuesArr[i - 1][j] >= valuesArr[i][j - 1]) && (pStr.doc1Index == i - 1) && (pStr.doc2Index == j)){
-                        resultString[count - k] = pStr.matchedChar;
-                    }
-                    else{
-                        resultString[count - k] = pStr.matchedChar;
+            for(int j = valuesArr[0].length - 1, l = 1; j >= 0; j--, l++){
+                if(valuesArr[i][j] == count){
+                    for(int m = i, n = j; m > 0 && n > 0; m--, n--, k--){
+                        resultString[count - l] = getMatchedChar(resultsArr, m, n, k);
                     }
                 }
+
             }
         }
     }
 
-    public static char getMatchedChar(ArrayList<MatchedStr> resultsArr, int count, int[][] valuesArr, int doc1Index, int doc2Index, int matchedStrPos){
+    public static char getMatchedChar(ArrayList<MatchedStr> resultsArr, int doc1Index, int doc2Index, int matchedStrPos){
         MatchedStr pStr = null;
         for(int k = matchedStrPos; k >= 0; k--){
             pStr = resultsArr.get(k);
@@ -145,9 +139,9 @@ public class PlagiarismChecker {
                 if((pStr.doc1Index == doc1Index) && (pStr.doc2Index == doc2Index - 1)){
                     return pStr.matchedChar;
                 }
-
             }
         }
+        return ' ';
     }
 
 }
