@@ -124,10 +124,30 @@ public class PlagiarismChecker {
                         resultString[count - k] = pStr.matchedChar;
                     }
                     else{
-                        resultString[count - k]
+                        resultString[count - k] = pStr.matchedChar;
                     }
                 }
             }
         }
     }
+
+    public static char getMatchedChar(ArrayList<MatchedStr> resultsArr, int count, int[][] valuesArr, int doc1Index, int doc2Index, int matchedStrPos){
+        MatchedStr pStr = null;
+        for(int k = matchedStrPos; k >= 0; k--){
+            pStr = resultsArr.get(k);
+            if((pStr.doc1Index == doc1Index) && (pStr.doc2Index == doc2Index)){
+               return pStr.matchedChar;
+            }
+            else{
+                if((pStr.doc1Index == doc1Index - 1) && (pStr.doc2Index == doc2Index)){
+                    return pStr.matchedChar;
+                }
+                if((pStr.doc1Index == doc1Index) && (pStr.doc2Index == doc2Index - 1)){
+                    return pStr.matchedChar;
+                }
+
+            }
+        }
+    }
+
 }
