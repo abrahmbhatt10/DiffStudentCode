@@ -107,25 +107,6 @@ public class PlagiarismChecker {
             return;
     }
     public static void printLongestSubString(ArrayList<MatchedStr> resultsArr, boolean allFlag, int count) {
-        MatchedStr resultStr;
-        if(resultsArr.size() <= 0) {
-            System.out.println("No matching string");
-            return;
-        }
-        int Len = 0;
-        Len = resultsArr.size()+1;
-        if(!allFlag) {
-            resultStr = resultsArr.get(0);
-            resultStr.matchedChar[resultStr.matchedStrLen] = '\0';
-            System.out.println("One Matched String: "+resultStr.matchedChar);
-        }
-        else {
-            System.out.println("All Matched Strings:");
-            for(int k = 0; k < resultsArr.size(); k++) {
-                resultStr = resultsArr.get(k);
-                resultStr.matchedChar[resultStr.matchedStrLen] = '\0';
-                System.out.println(resultStr.matchedChar);
-            }
-        }
+
     }
 }
