@@ -106,7 +106,25 @@ public class PlagiarismChecker {
             matchedStrings.add(tStr);
             return;
     }
-    public static void printLongestSubString(ArrayList<MatchedStr> resultsArr, boolean allFlag, int count) {
+    public static void printLongestSubString(ArrayList<MatchedStr> resultsArr, boolean allFlag, int count, int[][] valuesArr) {
+        if(count <= 0){
+            return;
+        }
+        char[] resultString = new char[count + 1];
+        MatchedStr pStr;
+        int k = resultsArr.size() - 1;
+        for(int i = valuesArr.length - 1; i >= 0; i--){
+            for(int j = valuesArr[0].length - 1; j >= 0; j--){
+                pStr = resultsArr.get(k);
+                if((pStr.doc1Index == i) && (pStr.doc2Index == j)){
+                    resultString[count - k] = pStr.matchedChar;
+                }
+                else{
+                    if(valuesArr[i - 1][j] >= valuesArr[i][j - 1]){
 
+                    }
+                }
+            }
+        }
     }
 }
