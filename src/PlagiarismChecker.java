@@ -47,7 +47,7 @@ public class PlagiarismChecker {
                 tabArr[i][j] = tabulation(i, j, doc1, doc2, tabArr, matchedStrings);
             }
         }
-        printLongestSubString(matchedStrings,true, tabArr[doc1.length()][doc2.length()]);
+        printLongestSubString(matchedStrings,true, tabArr[doc1.length()][doc2.length()],tabArr);
         return tabArr[doc1.length()][doc2.length()];
     }
 
@@ -99,7 +99,6 @@ public class PlagiarismChecker {
     }
     public static void addCharToLongestSubString(int i, int j, String doc1, ArrayList<MatchedStr> matchedStrings) {
             MatchedStr tStr = new MatchedStr();
-            tStr.matchedChar = new char[doc1.length()];
             tStr.doc1Index = i;
             tStr.doc2Index = j;
             tStr.matchedChar = doc1.charAt(i-1);
@@ -110,17 +109,30 @@ public class PlagiarismChecker {
         if(count <= 0){
             return;
         }
-        char[] resultString = new char[count];
+        if(allFlag) {
+            System.out.println("Printing All Matched Strings:");
+        }
+        else {
+            System.out.println("Printing One Matched Strings:");
+        }
+        char[] resultString = new char[count+1];
         MatchedStr pStr;
         int k = resultsArr.size() - 1;
         for(int i = valuesArr.length - 1; i >= 0; i--){
-            for(int j = valuesArr[0].length - 1, l = 1; j >= 0; j--, l++){
+            for(int j = valuesArr[0].length - 1; j >= 0; j--){
                 if(valuesArr[i][j] == count){
-                    for(int m = i, n = j; m > 0 && n > 0; m--, n--, k--){
+                    for(int m = i, n = j, l=1; m > 0 && n > 0 && count -l >= 0; m--, n--, k--, l++){
                         resultString[count - l] = getMatchedChar(resultsArr, m, n, k);
                     }
+                    resultString[count]='\0';
+                    System.out.println(resultString);
+                    if(!allFlag) {
+                        return;
+                    }
                 }
-
+                else{
+                    break;
+                }
             }
         }
     }
