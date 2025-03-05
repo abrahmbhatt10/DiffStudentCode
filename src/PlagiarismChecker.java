@@ -18,7 +18,6 @@ public class PlagiarismChecker {
      */
     public static int longestSharedSubstring(String doc1, String doc2) {
         //This function returns the length of the longest shared substring.
-        ArrayList<MatchedStr> matchedStrings = new ArrayList<MatchedStr>();
         /*
         //This uses memoisation
         int[][] memArr = new int[doc1.length() + 1][doc2.length() + 1];
@@ -51,7 +50,7 @@ public class PlagiarismChecker {
          */
         for (int i = 0; i < tabArr.length; i++) {
             for (int j = 0; j < tabArr[0].length; j++) {
-                tabArr[i][j] = tabulation(i, j, doc1, doc2, tabArr, matchedStrings);
+                tabArr[i][j] = tabulation(i, j, doc1, doc2, tabArr);
             }
         }
         /*
@@ -63,7 +62,7 @@ public class PlagiarismChecker {
     /*
         Below is the memoization function.
      */
-    public static int LCS(int i, int j, String doc1, String doc2, int[][] memArr, ArrayList<MatchedStr> matchedStrings){
+    public static int LCS(int i, int j, String doc1, String doc2, int[][] memArr){
         if(i < 0 || i > doc1.length() || j < 0 || j > doc2.length()) {
             return 0;
         }
@@ -75,7 +74,7 @@ public class PlagiarismChecker {
                 memArr[i][j] = memArr[i-1][j-1]+1;
             }
             else {
-                memArr[i][j] = LCS(i-1, j-1, doc1, doc2, memArr, matchedStrings) + 1;
+                memArr[i][j] = LCS(i-1, j-1, doc1, doc2, memArr) + 1;
             }
         }
         else{
@@ -84,12 +83,12 @@ public class PlagiarismChecker {
             if(memArr[i-1][j] != -1) {
                 m1 = memArr[i-1][j];
             } else {
-                m1 = LCS(i-1, j, doc1, doc2, memArr, matchedStrings);
+                m1 = LCS(i-1, j, doc1, doc2, memArr);
             }
             if(memArr[i][j-1] != -1) {
                 m2 = memArr[i][j-1];
             } else {
-                m2 = LCS(i, j-1, doc1, doc2, memArr, matchedStrings);
+                m2 = LCS(i, j-1, doc1, doc2, memArr);
             }
             memArr[i][j] = Math.max(m1, m2);
         }
@@ -102,7 +101,7 @@ public class PlagiarismChecker {
         If at that index the two chars (on doc1 and doc2) are different, then the value at that cell is the max of the value above and to the left.
         The value of each cell is returned by this method.
      */
-    public static int tabulation(int i, int j, String doc1, String doc2, int[][] tabArr, ArrayList<MatchedStr> matchedStrings){
+    public static int tabulation(int i, int j, String doc1, String doc2, int[][] tabArr){
         if((i == 0) || (j == 0)){
             return 0;
         }
