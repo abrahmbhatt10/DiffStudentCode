@@ -39,17 +39,30 @@ public class PlagiarismChecker {
 
 
 
-            //Below I have done tabulation.
+        //Below I have done tabulation.
+        /*
+            Below initializes the 2-d array in which tabulation is done
+         */
         int[][] tabArr = new int[doc1.length() + 1][doc2.length() + 1];
 
+        /*
+            Below assigns each cell in the 2-d array to a value,
+            which is calculated by the tabulation function.
+         */
         for (int i = 0; i < tabArr.length; i++) {
             for (int j = 0; j < tabArr[0].length; j++) {
                 tabArr[i][j] = tabulation(i, j, doc1, doc2, tabArr, matchedStrings);
             }
         }
+        /*
+            Below returns the final number representing the length of the longest substring.
+         */
         return tabArr[doc1.length()][doc2.length()];
     }
 
+    /*
+        Below is the memoization function.
+     */
     public static int LCS(int i, int j, String doc1, String doc2, int[][] memArr, ArrayList<MatchedStr> matchedStrings){
         if(i < 0 || i > doc1.length() || j < 0 || j > doc2.length()) {
             return 0;
@@ -83,6 +96,12 @@ public class PlagiarismChecker {
         return memArr[i][j];
     }
 
+    /*
+        Below uses the pseudocode on Mr. Blick's slides.
+        While comparing the two chars at each index, if they're the same, then add 1 to the number stored diagonally to the upper left.
+        If at that index the two chars (on doc1 and doc2) are different, then the value at that cell is the max of the value above and to the left.
+        The value of each cell is returned by this method.
+     */
     public static int tabulation(int i, int j, String doc1, String doc2, int[][] tabArr, ArrayList<MatchedStr> matchedStrings){
         if((i == 0) || (j == 0)){
             return 0;
