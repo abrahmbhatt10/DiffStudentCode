@@ -47,7 +47,6 @@ public class PlagiarismChecker {
                 tabArr[i][j] = tabulation(i, j, doc1, doc2, tabArr, matchedStrings);
             }
         }
-        printLongestSubString(matchedStrings,true, tabArr[doc1.length()][doc2.length()],tabArr);
         return tabArr[doc1.length()][doc2.length()];
     }
 
@@ -59,7 +58,6 @@ public class PlagiarismChecker {
             return memArr[i][j];
         }
         if(doc1.charAt(i - 1) == doc2.charAt(j - 1)){
-            addCharToLongestSubString(i,j, doc1,matchedStrings);
             if(memArr[i-1][j-1] != -1) {
                 memArr[i][j] = memArr[i-1][j-1]+1;
             }
@@ -90,70 +88,10 @@ public class PlagiarismChecker {
             return 0;
         }
         if(doc1.charAt(i - 1) == doc2.charAt(j - 1)){
-            addCharToLongestSubString(i, j, doc1, matchedStrings);
             return tabArr[i - 1][j - 1] + 1;
         }
         else{
             return Math.max(tabArr[i - 1][j], tabArr[i][j - 1]);
         }
     }
-    public static void addCharToLongestSubString(int i, int j, String doc1, ArrayList<MatchedStr> matchedStrings) {
-            MatchedStr tStr = new MatchedStr();
-            tStr.doc1Index = i;
-            tStr.doc2Index = j;
-            tStr.matchedChar = doc1.charAt(i-1);
-            matchedStrings.add(tStr);
-            return;
-    }
-    public static void printLongestSubString(ArrayList<MatchedStr> resultsArr, boolean allFlag, int count, int[][] valuesArr) {
-        if(count <= 0){
-            return;
-        }
-        if(allFlag) {
-            System.out.println("Printing All Matched Strings:");
-        }
-        else {
-            System.out.println("Printing One Matched Strings:");
-        }
-        char[] resultString = new char[count+1];
-        MatchedStr pStr;
-        int k = resultsArr.size() - 1;
-        for(int i = valuesArr.length - 1; i >= 0; i--){
-            for(int j = valuesArr[0].length - 1; j >= 0; j--){
-                if(valuesArr[i][j] == count){
-                    for(int m = i, n = j, l=1; m > 0 && n > 0 && count -l >= 0; m--, n--, k--, l++){
-                        resultString[count - l] = getMatchedChar(resultsArr, m, n, k);
-                    }
-                    resultString[count]='\0';
-                    System.out.println(resultString);
-                    if(!allFlag) {
-                        return;
-                    }
-                }
-                else{
-                    break;
-                }
-            }
-        }
-    }
-
-    public static char getMatchedChar(ArrayList<MatchedStr> resultsArr, int doc1Index, int doc2Index, int matchedStrPos){
-        MatchedStr pStr = null;
-        for(int k = matchedStrPos; k >= 0; k--){
-            pStr = resultsArr.get(k);
-            if((pStr.doc1Index == doc1Index) && (pStr.doc2Index == doc2Index)){
-               return pStr.matchedChar;
-            }
-            else{
-                if((pStr.doc1Index == doc1Index - 1) && (pStr.doc2Index == doc2Index)){
-                    return pStr.matchedChar;
-                }
-                if((pStr.doc1Index == doc1Index) && (pStr.doc2Index == doc2Index - 1)){
-                    return pStr.matchedChar;
-                }
-            }
-        }
-        return ' ';
-    }
-
 }
